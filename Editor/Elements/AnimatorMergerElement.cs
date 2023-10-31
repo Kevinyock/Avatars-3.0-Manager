@@ -133,18 +133,44 @@ namespace VRLabs.AV3Manager
 
             mergeOnCurrent.clicked += () =>
             {
-                var dictionary = _parametersToMerge.ToDictionary(p => p.Name, p => p.Name + p.Suffix);
-                layer.SetController(AnimatorCloner.MergeControllers(layer.Layer.animatorController as AnimatorController, controller.value as AnimatorController, dictionary));
-                OnClose?.Invoke();
+                if(isAnimatorSame())
+                {
+                    var dictionary = _parametersToMerge.ToDictionary(p => p.Name, p => p.Name + p.Suffix);
+                    layer.SetController(AnimatorCloner.MergeControllers(layer.Layer.animatorController as AnimatorController, controller.value as AnimatorController, dictionary));
+                    OnClose?.Invoke();
+                }
+                else
+                {
+                    Debug.LogError("Attempt to merge animator to itself, aborting operation");
+                }
             };
             
             mergeOnNew.clicked += () =>
             {
-                var dictionary = _parametersToMerge.ToDictionary(p => p.Name, p => p.Name + p.Suffix);
-                layer.SetController(AnimatorCloner.MergeControllers(layer.Layer.animatorController as AnimatorController, controller.value as AnimatorController, dictionary, true));
-                OnClose?.Invoke();
+                if(isAnimatorSame())
+                {
+                    var dictionary = _parametersToMerge.ToDictionary(p => p.Name, p => p.Name + p.Suffix);
+                    layer.SetController(AnimatorCloner.MergeControllers(layer.Layer.animatorController as AnimatorController, controller.value as AnimatorController, dictionary, true));
+                    OnClose?.Invoke();
+                }
+                else
+                {
+                    Debug.LogError("Attempt to merge animator to itself, aborting operation");
+                }
             };
 
+        }
+
+        private bool isAnimatorSame()
+        {
+            if( 1 != 1)
+            {
+                return true;
+            }
+            else
+            {
+                return false
+            }
         }
     }
 }
