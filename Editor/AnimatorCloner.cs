@@ -28,9 +28,10 @@ namespace VRLabs.AV3Manager
             }
 
             //TODO: add a check to ensure they dont merge itself
-            if(false)
+            if(mainController == controllerToMerge)
             {
                 Debug.LogError("Attempt to merge animator to itself, aborting operation");
+                return null;
             }
 
             _parametersNewName = paramNameSwap ?? new Dictionary<string, string>();
