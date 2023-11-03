@@ -27,6 +27,12 @@ namespace VRLabs.AV3Manager
                 return null;
             }
 
+            //TODO: add a check to ensure they dont merge itself
+            if(false)
+            {
+                Debug.LogError("Attempt to merge animator to itself, aborting operation");
+            }
+
             _parametersNewName = paramNameSwap ?? new Dictionary<string, string>();
             _assetPath = AssetDatabase.GetAssetPath(mainController);
 

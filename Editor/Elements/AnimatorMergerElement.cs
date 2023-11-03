@@ -133,30 +133,16 @@ namespace VRLabs.AV3Manager
 
             mergeOnCurrent.clicked += () =>
             {
-                if(isAnimatorSame())
-                {
-                    var dictionary = _parametersToMerge.ToDictionary(p => p.Name, p => p.Name + p.Suffix);
-                    layer.SetController(AnimatorCloner.MergeControllers(layer.Layer.animatorController as AnimatorController, controller.value as AnimatorController, dictionary));
-                    OnClose?.Invoke();
-                }
-                else
-                {
-                    Debug.LogError("Attempt to merge animator to itself, aborting operation");
-                }
+                var dictionary = _parametersToMerge.ToDictionary(p => p.Name, p => p.Name + p.Suffix);
+                layer.SetController(AnimatorCloner.MergeControllers(layer.Layer.animatorController as AnimatorController, controller.value as AnimatorController, dictionary));
+                OnClose?.Invoke();
             };
             
             mergeOnNew.clicked += () =>
             {
-                if(isAnimatorSame())
-                {
-                    var dictionary = _parametersToMerge.ToDictionary(p => p.Name, p => p.Name + p.Suffix);
-                    layer.SetController(AnimatorCloner.MergeControllers(layer.Layer.animatorController as AnimatorController, controller.value as AnimatorController, dictionary, true));
-                    OnClose?.Invoke();
-                }
-                else
-                {
-                    Debug.LogError("Attempt to merge animator to itself, aborting operation");
-                }
+                var dictionary = _parametersToMerge.ToDictionary(p => p.Name, p => p.Name + p.Suffix);
+                layer.SetController(AnimatorCloner.MergeControllers(layer.Layer.animatorController as AnimatorController, controller.value as AnimatorController, dictionary, true));
+                OnClose?.Invoke();
             };
 
         }
