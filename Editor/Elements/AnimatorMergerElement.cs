@@ -146,17 +146,5 @@ namespace VRLabs.AV3Manager
             };
 
         }
-
-        private bool isAnimatorSame()
-        {
-            if( 1 != 1)
-            {
-                return true;
-            }
-            else
-            {
-                return false
-            }
-        }
     }
 }
